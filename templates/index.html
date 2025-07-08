@@ -5,10 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>책나무 구월에듀포레점 국어사전</title>
     <style>
+        /* 기본 화면 스타일 */
         body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; }
         textarea { width: 100%; height: 150px; margin-bottom: 10px; }
         button { width: 100%; padding: 10px; font-size: 16px; }
         .error { color: red; }
+        footer { text-align: center; margin-top: 40px; color: gray; }
+
+        /* --- 인쇄용 스타일 추가 --- */
+        @media print {
+            /* 페이지 크기 및 여백 설정 */
+            @page {
+                size: 80mm 56mm;
+                margin: 4mm; /* 인쇄 여백 */
+            }
+
+            /* 인쇄 시에는 화면 스타일과 다른 폰트 및 크기 적용 */
+            body {
+                font-family: 'Malgun Gothic', sans-serif;
+                font-size: 9pt;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* 인쇄 시 불필요한 요소 숨기기 */
+            button {
+                display: none;
+            }
+
+            /* 텍스트 입력창은 인쇄 시 테두리 없애기 */
+            textarea {
+                border: none;
+                height: 100px;
+                resize: none;
+            }
+
+            h1 {
+                font-size: 14pt;
+                text-align: center;
+            }
+
+            footer {
+                font-size: 7pt;
+            }
+        }
     </style>
 </head>
 <body>
@@ -18,10 +59,12 @@
         <textarea id="words" name="words" required></textarea>
         <button type="submit">단어 라벨 만들기</button>
     </form>
+    
     {% if error %}
         <p class="error">{{ error }}</p>
     {% endif %}
-    <footer style="text-align: center; margin-top: 40px; color: gray;">
+
+    <footer>
         <p>ⓒ책나무 구월에듀포레점 2025</p>
     </footer>
 </body>
